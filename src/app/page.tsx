@@ -47,6 +47,7 @@ export default function Home() {
   const [killed, setKilled] = useState(0);
   const [shapesPerSecond, setShapesPerSecond] = useState(1);
   const isWindowFocused = useWindowFocus();
+  const [occupiedArea, setOccupiedArea] = useState(0);
 
   const getFigure: GetFigure = (x = 100, y, onClick) => {
     const graphics = new PIXI.Graphics();
@@ -68,7 +69,8 @@ export default function Home() {
   return (
     <>
       <div className={'justify-center px-2 flex items-center gap-10 py-2'}>
-        <span className={'w-[150px] text-right'}>Shapes: {childrenCount}</span>
+        <span className={'text-right'}>Shapes: {childrenCount}</span>
+        <span className={'text-right'}>Area: {Math.round(occupiedArea)}px</span>
         <span>Killed shapes: {killed}</span>
         <span>Shapes per second: {shapesPerSecond}</span>
 
@@ -112,6 +114,13 @@ export default function Home() {
           });
 
           app.ticker.add(() => {
+            setOccupiedArea(
+              app.stage.children.reduce(
+                (acc, child) =>
+                  acc + child.getBounds().height * child.getBounds().width,
+                0
+              )
+            );
             app.stage.children
               .find(
                 (child) =>

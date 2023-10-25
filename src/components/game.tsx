@@ -1,5 +1,6 @@
 'use client';
-import { GetFigure, getRandomNumber } from '@/app/page';
+import { GetFigure } from '@/app/page';
+import { getRandomNumber } from '@/utils/get-random-number';
 import '@pixi/events';
 import { _ReactPixi, useApp, useTick } from '@pixi/react';
 import { useEffect } from 'react';

@@ -1,5 +1,6 @@
 'use client';
 import Game from '@/components/game';
+import { getRandomNumber } from '@/utils/get-random-number';
 import '@pixi/events';
 import { Stage } from '@pixi/react';
 import * as PIXI from 'pixi.js';
@@ -26,9 +27,6 @@ const buttonClassName =
   'bg-[#24292e] px-2 py-1 rounded-md cursor-pointer select-none text-white';
 
 export type GetFigure = (x?: number, y?: number, onClick?: () => void) => any;
-
-export const getRandomNumber = (min: number, max: number): number =>
-  Math.random() * (max - min + 1) + min;
 
 const drawCircle = (graphics: PIXI.Graphics) =>
   graphics
